@@ -1,0 +1,60 @@
+{
+  "id": "self-learning",
+  "name": "Self-Learning",
+  "description": "Self-improving skills, cross-agent memory bridge, structured compression, and trajectory capture. Works standalone; optionally connects to a memory backend (OpenViking, etc.) for cross-agent recall.",
+  "uiHints": {
+    "memoryBackendType": {
+      "label": "Memory Backend",
+      "placeholder": "none",
+      "help": "Memory backend type: 'openviking' or 'none' (local-only). Phases 1/3/4 work without a backend."
+    },
+    "memoryBackendUrl": {
+      "label": "Memory Backend URL",
+      "placeholder": "http://host.docker.internal:1933",
+      "help": "HTTP URL of running memory backend instance"
+    },
+    "memoryBackendApiKey": {
+      "label": "Memory Backend API Key",
+      "sensitive": true,
+      "placeholder": ""
+    },
+    "skillsDir": {
+      "label": "Skills Directory",
+      "placeholder": "~/.openclaw/skills/auto",
+      "help": "Where agent-created skills are stored"
+    },
+    "skillReviewThreshold": {
+      "label": "Skill Review Threshold",
+      "placeholder": "5",
+      "help": "Minimum tool calls in a run to trigger skill review"
+    }
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "memoryBackendType": { "type": "string", "enum": ["openviking", "none"], "default": "none" },
+      "memoryBackendUrl": { "type": "string" },
+      "memoryBackendApiKey": { "type": "string" },
+      "memoryBackendTimeoutMs": { "type": "number" },
+      "vikingBaseUrl": { "type": "string", "description": "Deprecated — use memoryBackendUrl" },
+      "vikingApiKey": { "type": "string", "description": "Deprecated — use memoryBackendApiKey" },
+      "vikingTimeoutMs": { "type": "number", "description": "Deprecated — use memoryBackendTimeoutMs" },
+      "skillsDir": { "type": "string" },
+      "skillReviewThreshold": { "type": "number" },
+      "enableToolStats": { "type": "boolean" },
+      "enableSkillReview": { "type": "boolean" },
+      "enableCrossAgentRecall": { "type": "boolean" },
+      "enableCompaction": { "type": "boolean" },
+      "enableTrajectory": { "type": "boolean" },
+      "compactionBudgetPercent": { "type": "number" },
+      "compactionMinTokens": { "type": "number" },
+      "compactionMaxTokens": { "type": "number" },
+      "trajectoryDir": { "type": "string" },
+      "crossAgentScopes": {
+        "type": "array",
+        "items": { "type": "string" }
+      }
+    }
+  }
+}
