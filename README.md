@@ -37,28 +37,32 @@ Agents automatically learn from their own workflows. When an agent completes a r
 
 ```markdown
 ---
-name: deploy-docker-compose
-description: Deploy services using docker-compose with health checks
+name: summarize-meeting-notes
+description: Extract action items and decisions from raw meeting transcripts
 version: 1.0.0
 metadata:
-  tags: [devops, docker]
+  tags: [notes, extraction]
   auto_created: true
 ---
 
-# Deploy Docker Compose
+# Summarize Meeting Notes
 
 ## When to Use
-When deploying multi-service applications...
+When a user provides raw meeting transcripts or asks to process meeting notes.
 
 ## Steps
-1. Validate compose file...
-2. Pull images...
+1. Identify participants and date from the transcript
+2. Extract key decisions made during the meeting
+3. List action items with assignees and deadlines
+4. Summarize unresolved topics for follow-up
 
 ## Common Pitfalls
-- Port conflicts...
+- Missing context when transcript is partial
+- Confusing discussion points with actual decisions
 
 ## Verification
-- Run `docker-compose ps`...
+- Confirm all action items have an assignee
+- Cross-check decisions against the original transcript
 ```
 
 All agent-created skills go through a **security scanner** that checks for:
